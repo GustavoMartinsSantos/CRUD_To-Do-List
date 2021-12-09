@@ -1,0 +1,17 @@
+services:
+  php:
+    image: php:8.0-apache
+    container_name: projeto_tarefas-php
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - 2756:80
+    links:
+      - database
+  database:
+    image: mysql:8
+    container_name: mysql_db
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=JtN83mLPC3
