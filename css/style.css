@@ -1,0 +1,86 @@
+* {
+    font-family: "Baskerville ";
+}
+
+body {
+    background: #e1e8ed;
+}
+
+.header{
+    height: 70px;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin-bottom: 20px;
+    position: fixed;
+    background: #a6a6a6 ;
+    /* border: 4px solid #66757f; */
+    text-align: center;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background-color: #32CD30;
+}
+
+.titulo{
+    margin-top: 0.5%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    text-align: center;
+}
+
+.box_search{
+    background-color: white;
+    height: 25px;
+}
+    
+.btnpesquisa{ 
+    background-color: #0e1e2b;
+    color: white;
+    height: 30px;
+}
+
+
+.centraliza{
+    display: inline-block;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 200px;
+}
+
+table{
+    margin-top: 3%;
+    border: 1px solid #292f33;
+    width: 20%;
+}
+
+th{
+    width: 500px;
+    height: 30px;
+    color: white;
+    background-color: #14171A;
+}
+
+.tarefa{
+    margin-top: 10px;
+    color: black;
+    height: 80px;
+}
+
+.p_tarefa{
+    background-color: white;
+    color: black;
+}
+
+.btn_tam{
+    display: inline-block;
+    
+}
