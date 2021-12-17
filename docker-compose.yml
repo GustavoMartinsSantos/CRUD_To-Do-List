@@ -1,7 +1,9 @@
 services:
   php:
-    image: php:8.0-apache
-    container_name: projeto_tarefas-php
+    container_name: php_8.0_apache
+    build:
+      context: ./
+      dockerfile: Dockerfile
     volumes:
       - ./:/var/www/html
     ports:
