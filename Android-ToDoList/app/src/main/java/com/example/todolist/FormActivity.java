@@ -4,9 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -34,7 +40,7 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
     private TextView taskDueDate;
     private TextView taskDueTime;
 
-    private class SpinnerValues {
+    public static class SpinnerValues {
         private String name;
         private String status;
 
@@ -52,14 +58,18 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
-    public void spinnerSetAdapter (Spinner taskStatusSpinner) {
+    public static void spinnerSetAdapter (Context context, Spinner taskStatusSpinner, boolean allTasks) {
         ArrayList<SpinnerValues> statusArray = new ArrayList<>();
+
+        if(allTasks)
+            statusArray.add(new SpinnerValues("Todas", ""));
+
         statusArray.add(new SpinnerValues("A Fazer", "0"));
         statusArray.add(new SpinnerValues("Fazendo", "1"));
         statusArray.add(new SpinnerValues("Feito", "2"));
         statusArray.add(new SpinnerValues("Atrasado", "3"));
 
-        ArrayAdapter<SpinnerValues> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, statusArray);
+        ArrayAdapter<SpinnerValues> spinnerAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, statusArray);
         taskStatusSpinner.setAdapter(spinnerAdapter);
     }
 
@@ -146,7 +156,7 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
 
         FloatingActionButton fab = findViewById(R.id.fab);
         taskStatusSpinner = findViewById(R.id.SpinnerStatusTask);
-        spinnerSetAdapter(taskStatusSpinner);
+        spinnerSetAdapter(this, taskStatusSpinner, false);
 
         taskTitle = findViewById(R.id.TitleTask);
         taskDesc = findViewById(R.id.DescriptionTask);
