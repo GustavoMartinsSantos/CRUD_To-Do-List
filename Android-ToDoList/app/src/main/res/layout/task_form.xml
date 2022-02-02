@@ -5,57 +5,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF4E" >
+    android:orientation="vertical"
+    android:background="#4CAF4E">
 
-    <EditText
-        android:id="@+id/DescriptionTask"
-        android:layout_width="360dp"
-        android:layout_height="102dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:textColor="#FFFFFF"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="372dp"
+        android:layout_height="62dp"
+        app:boxStrokeColor="#038CF4"
+        android:hint="@string/t_tulo_da_tarefa"
+        android:textColorHint="#FFFFFFFF"
+        app:hintTextColor="#FFFFFF"
+        app:helperText="Campo necessário"
+        app:endIconMode="clear_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintVertical_bias="0.071">
 
-    <EditText
-        android:id="@+id/TitleTask"
-        android:layout_width="360dp"
-        android:layout_height="46dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/t_tulo_da_tarefa"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
+            <EditText
+                android:id="@+id/TitleTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFFFF"
+                android:maxLength="50"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:autofillHints="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="372dp"
+        android:layout_height="153dp"
+        app:boxStrokeColor="#038CF4"
+        android:hint="@string/descri_o_da_tarefa"
+        android:textColorHint="#FFFFFFFF"
+        app:hintTextColor="#FFFFFF"
+        app:endIconMode="clear_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.221">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/DescriptionTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/txtViewDescription"
-        android:layout_width="242dp"
-        android:layout_height="30dp"
-        android:text="@string/descri_o_da_tarefa"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.216" />
-
-    <TextView
-        android:id="@+id/txtViewDueDate"
+        android:id="@+id/txtViewDueDateTime"
         android:layout_width="242dp"
         android:layout_height="30dp"
         android:text="@string/data_de_vencimento"
@@ -68,33 +82,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.445" />
 
-    <EditText
-        android:id="@+id/DueDateTask"
-        android:layout_width="217dp"
-        android:layout_height="53dp"
-        android:ems="10"
-        android:inputType="date"
+    <TextView
+        android:id="@+id/txtViewDueDateTask"
+        android:layout_width="215dp"
+        android:layout_height="40dp"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.504"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.494"
+        app:drawableEndCompat="@drawable/ic_calendar" />
 
-    <EditText
-        android:id="@+id/DueTimeTask"
-        android:layout_width="118dp"
-        android:layout_height="51dp"
-        android:ems="10"
-        android:inputType="time"
+    <TextView
+        android:id="@+id/txtViewDueTimeTask"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.505"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.495"
+        app:drawableEndCompat="@drawable/ic_time" />
 
     <Spinner
         android:id="@+id/SpinnerStatusTask"
@@ -106,6 +124,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.624" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

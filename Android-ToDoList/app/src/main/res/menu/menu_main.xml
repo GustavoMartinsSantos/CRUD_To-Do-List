@@ -2,9 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.todolist.MainActivity">
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+        android:id="@+id/searchViewTasks"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
+
+    <item
+        android:id="@+id/SpinnerStatusTask"
+        android:title="Status"
+        app:actionViewClass="android.widget.Spinner"
+        app:showAsAction="always" />
 </menu>

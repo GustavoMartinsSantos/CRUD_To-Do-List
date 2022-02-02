@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="75dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:padding="16dp"
-    android:background="#091620" >
+    android:layout_marginBottom="20dp"
+    app:cardCornerRadius="7dp">
 
-    <TextView
-        android:id="@+id/txtViewTaskTitle"
-        android:layout_width="237dp"
-        android:layout_height="wrap_content"
-        android:text="Task Title"
-        android:textColor="#FFFFFF"
-        android:textSize="17dp"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:background="#091620">
 
-    <TextView
-        android:id="@+id/txtViewTaskDueDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="16/01/2022 17:40"
-        android:textColor="#038CF4"
-        android:textSize="17dp"
-        android:textStyle="bold" />
-</LinearLayout>
+            <TextView
+                android:id="@+id/txtViewTaskTitle"
+                android:layout_width="178dp"
+                android:layout_height="wrap_content"
+                android:text="Task Title"
+                android:textColor="#FFFFFF"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTaskDueDate"
+                android:layout_width="152dp"
+                android:layout_height="wrap_content"
+                android:text="16/01/2022 17:40"
+                android:textColor="#038CF4"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTaskStatus"
+                android:layout_width="32dp"
+                android:theme="@style/colored_checkbox"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
