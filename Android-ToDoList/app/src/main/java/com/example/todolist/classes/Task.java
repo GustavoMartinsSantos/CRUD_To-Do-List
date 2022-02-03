@@ -1,17 +1,9 @@
 package com.example.todolist.classes;
 
-import android.util.Log;
-
-import com.vishnusivadas.advanced_httpurlconnection.PutData;
-
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Task {
     private int ID;
@@ -29,7 +21,7 @@ public class Task {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.replaceAll("<br />", "\n");
     }
 
     public void setDue_date(String due_date) {
@@ -43,7 +35,24 @@ public class Task {
         }
     }
 
+    public void setBRDue_date(String due_date) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        try {
+            this.due_date = dateFormat.parse(due_date);
+        } catch(Exception e) {
+            System.out.println("Erro: " + e.getClass());
+            e.printStackTrace();
+        }
+    }
+
     public void setStatus(int status) {
+        if(status == 3)
+            status = 0;
+
+        if(getDue_date().before(new Date()) && status != 2)
+            status = 3;
+
         this.status = status;
     }
 
@@ -59,8 +68,20 @@ public class Task {
         return description;
     }
 
-    public String getDue_dateString () {
+    public String getBRDue_dateTime () {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        return dateFormat.format(this.getDue_date());
+    }
+
+    public String getDue_dateString () {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        return dateFormat.format(this.getDue_date());
+    }
+
+    public String getDue_timeString () {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
         return dateFormat.format(this.getDue_date());
     }
@@ -84,40 +105,81 @@ public class Task {
 
     public static ArrayList<Task> getTasksByString (String rows) {
         ArrayList<Task> tasks = new ArrayList<>();
-        String[] lines = rows.split("\\<br>");
+        String[] lines = rows.split("\\<tr><td>");
 
         for(String row : lines) {
-            String[] columns = row.split("\\,");
+            String[] columns = row.split("\\<td>");
 
-            Task task = new Task();
-            task.setID(Integer.parseInt(columns[0]));
-            task.setTitle(columns[1]);
-            task.setDescription(columns[2]);
-            task.setDue_date(columns[3]);
-            task.setStatus(Integer.parseInt(columns[4]));
+            if(columns.length == 5) {
+                Task task = new Task();
+                int status = Integer.parseInt(columns[4]);
 
-            tasks.add(task);
+                task.setID(Integer.parseInt(columns[0]));
+                task.setTitle(columns[1]);
+                task.setDescription(columns[2]);
+                task.setDue_date(columns[3]);
+                task.setStatus(status);
+
+                if(task.getStatus() != status)
+                    task.UPDATE();
+
+                tasks.add(task);
+            }
         }
 
         return tasks;
     }
 
-    public static ArrayList<Task> SELECT (String search) {
-        String link = "http://192.168.13.231/AndroidPages/index.php";
-        String[][] getArray = {{"search", search}};
-
-        return getTasksByString(Server.Execute(link, getArray, new String[1][2]));
-    }
-
     public String INSERT () {
-        String link = "http://192.168.13.231/cadastrar.php";
+        String link = "http://192.168.13.232/cadastrar.php";
         String[][] postArray = {
                 {"title", getTitle()},
                 {"description", getDescription()},
                 {"date", getDue_dateString()},
+                {"time", getDue_timeString()},
                 {"status", String.valueOf(getStatus())}
         };
 
         return Server.Execute(link, null, postArray);
+    }
+
+    public static Task SELECT (int id) {
+        String link = "http://192.168.13.232/AndroidPages/index.php";
+        String[][] getArray = {{"id", String.valueOf(id)}};
+
+        return getTasksByString(Server.Execute(link, getArray, null)).get(0);
+    }
+
+    public static ArrayList<Task> SELECT (String search, String status) {
+        String link = "http://192.168.13.232/AndroidPages/index.php";
+        String[][] getArray = {{"search", search},
+                               {"status", status}};
+
+        return getTasksByString(Server.Execute(link, getArray, null));
+    }
+
+    public String UPDATE () {
+        String link = "http://192.168.13.232/editar.php";
+
+        String[][] getArray = {
+                {"id", String.valueOf(getID())}
+        };
+
+        String[][] postArray = {
+                {"title", getTitle()},
+                {"description", getDescription()},
+                {"date", getDue_dateString()},
+                {"time", getDue_timeString()},
+                {"status", String.valueOf(getStatus())}
+        };
+
+        return Server.Execute(link, getArray, postArray);
+    }
+
+    public String DELETE () {
+        String link = "http://192.168.13.232/excluir.php";
+        String[][] getArray = {{"id", String.valueOf(getID())}};
+
+        return Server.Execute(link, getArray, null);
     }
 }
