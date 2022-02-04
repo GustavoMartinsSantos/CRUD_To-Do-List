@@ -15,5 +15,8 @@
     
     DELETE(['ID' => $_GET['id']]);
     
-    header("Location: index.php"); 
+    if($WEB) 
+        header("Location: index.php"); 
+    else
+        echo "Excluído com sucesso";
 ?>

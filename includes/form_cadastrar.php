@@ -13,8 +13,10 @@
                 <label class="form-label" for="title">Titulo da tarefa</label>
             </div>
             <br>
-            <!--<label class="form-label mt-3">Descrição</label>
-            <textarea name="Tarefa" rows="4" class="form-control" style="resize: none" maxlength="60000"></textarea>-->
+            <label class="form-label mt-3">Descrição</label>
+            <textarea name="description" rows="4" class="form-control" style="resize: none" maxlength="60000"><?php 
+                echo (TITLE == "Editar") ? $task['description'] : null 
+            ?></textarea>
             <br>
             <div class="row">
                 <div class="col">
@@ -40,10 +42,10 @@
                     </select>
                 </div>
             </div>
-                <div class="text-center">
-                    <input type="submit" class="btn bg-warning mt-3 w-50 " value="<?php echo TITLE ?>">
-                </div>    
-                            
+
+            <div class="text-center">
+                <input type="submit" class="btn bg-warning mt-3 w-50 " value="<?php echo TITLE ?>">
+            </div>          
         </form>
     </div>
 </body>

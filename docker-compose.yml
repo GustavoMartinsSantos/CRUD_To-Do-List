@@ -7,7 +7,7 @@ services:
     volumes:
       - ./:/var/www/html
     ports:
-      - 2756:80
+      - 80:80
     links:
       - database
   database:

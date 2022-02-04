@@ -1,4 +1,9 @@
 <?php
+    if(isset($_POST['Mobile']))
+        $WEB = false;
+    else
+        $WEB = true;
+
     function getConection () {
         $server   = "database";
         $database = "db_tasks";
@@ -10,7 +15,7 @@
         return $conection;
     }
 
-    function executeQuery ($query, $values = []) {
+    function executeQuery (string $query, array $values = []) {
         try {
             $stmt = getConection()->prepare($query);
 
