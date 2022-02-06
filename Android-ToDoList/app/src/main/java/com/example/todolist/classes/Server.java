@@ -3,6 +3,8 @@ package com.example.todolist.classes;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public abstract class Server {
+    private static String serverIP = "192.168.13.232";
+
     private static String getURLStringByMultArray (String[][] array) {
         String getString = "?";
 
@@ -17,6 +19,7 @@ public abstract class Server {
         int postArrayLength = 0;
         String result = new String();
         PutData putData;
+        link = "http://" + serverIP + "/" + link;
 
         if(getArray != null)
             link += getURLStringByMultArray(getArray);

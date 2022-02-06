@@ -131,7 +131,7 @@ public class Task {
     }
 
     public String INSERT () {
-        String link = "http://192.168.13.232/cadastrar.php";
+        String link = "cadastrar.php";
         String[][] postArray = {
                 {"title", getTitle()},
                 {"description", getDescription()},
@@ -144,14 +144,14 @@ public class Task {
     }
 
     public static Task SELECT (int id) {
-        String link = "http://192.168.13.232/AndroidPages/index.php";
+        String link = "AndroidPages/index.php";
         String[][] getArray = {{"id", String.valueOf(id)}};
 
         return getTasksByString(Server.Execute(link, getArray, null)).get(0);
     }
 
     public static ArrayList<Task> SELECT (String search, String status) {
-        String link = "http://192.168.13.232/AndroidPages/index.php";
+        String link = "AndroidPages/index.php";
         String[][] getArray = {{"search", search},
                                {"status", status}};
 
@@ -159,7 +159,7 @@ public class Task {
     }
 
     public String UPDATE () {
-        String link = "http://192.168.13.232/editar.php";
+        String link = "editar.php";
 
         String[][] getArray = {
                 {"id", String.valueOf(getID())}
@@ -177,7 +177,7 @@ public class Task {
     }
 
     public String DELETE () {
-        String link = "http://192.168.13.232/excluir.php";
+        String link = "excluir.php";
         String[][] getArray = {{"id", String.valueOf(getID())}};
 
         return Server.Execute(link, getArray, null);
